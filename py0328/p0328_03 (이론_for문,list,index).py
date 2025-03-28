@@ -1,12 +1,12 @@
-# # 반복문을 사용해서 1~10까지 출력
-# for i in range(1,11):
-#     print(i)
+# 반복문을 사용해서 1~10까지 출력
+for i in range(1,11):
+    print(i)
 
-# a=10
-# if a>5 and a<9:  #True and False (둘다 참이면 True/하나라도 거짓이면 False)
-#     print(a)
-# if a>5 or a<9:  #True or False (하나라도 참이면 True)
-#     print(a)
+a=10
+if a>5 and a<9:  #True and False (둘다 참이면 True/하나라도 거짓이면 False)
+    print(a)
+if a>5 or a<9:  #True or False (하나라도 참이면 True)
+    print(a)
 
 a_list=[1,2,3,4,5]
 print(a_list[2])    # A. 3

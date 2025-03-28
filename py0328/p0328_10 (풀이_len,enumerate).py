@@ -11,7 +11,7 @@ for i,fruit in enumerate(fruits):
         print("{}.{}".format(i+1,fruit))
 
 
-# scores=[65,90,100,100,50]
-# for score in scores:
-#     print(score,end=" ")
+scores=[65,90,100,100,50]
+for score in scores:
+    print(score,end=" ")
 

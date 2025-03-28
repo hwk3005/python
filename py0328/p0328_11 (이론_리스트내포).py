@@ -1,7 +1,7 @@
 arr=[1,2,3,4,5,6,7,8,9,10]
 # arr2=[1,2,3,4,5,....10]
 
-# 리스트 내포 (리스트 내에 포문이 존재한다는 뜻)
+# 리스트 내포 (리스트 내에 for문이 존재한다는 뜻)
 arr2=[i+1 for i in range(100)]
 print(arr2)
 
@@ -36,7 +36,7 @@ a_list=[]
 for i in range(100):
     a_list.append(i)
 print(a_list)
-# 위와 동일한 닶 나옴
+# 위와 동일한 닶 나옴 vvv
 aa_list=[i for i in range(100)]
 print(aa_list)
 #---------------

@@ -29,23 +29,23 @@ for i in range(num1,num2+1):
     print()
 
 
-# # Q1. 두 수를 입력받아, 두수 사이의 합계를 구하시오.
-# #   ex. 1,7 → 1,2,3,4,5,6,7까지 합을 출력하면 됨.
-# num1=int(input("숫자를 입력하세요: "))
-# num2=int(input("숫자를 입력하세요: "))
-# print(num1,num2)
+# Q1. 두 수를 입력받아, 두수 사이의 합계를 구하시오.
+#   ex. 1,7 → 1,2,3,4,5,6,7까지 합을 출력하면 됨.
+num1=int(input("숫자를 입력하세요: "))
+num2=int(input("숫자를 입력하세요: "))
+print(num1,num2)
 
-# # if문 비교 (num1,num2) num2가 더 큰지 확인
-# if num1>num2:
-#     t=num1              # (모든 프로그램 가능)
-#     num1=num2
-#     num2=t
-#     # num1,num2=num2,num1 (파이썬만 가능)
-# sum=0
-# for i in range(num1,num2+1):
-#         sum=sum+i
-#         print("i: {}, sum: {}".format(i,sum))
-# print("{}에서 {}까지의 합계: {}".format(num1,num2,sum))
+# if문 비교 (num1,num2) num2가 더 큰지 확인
+if num1>num2:
+    t=num1              # (모든 프로그램 가능)
+    num1=num2
+    num2=t
+    # num1,num2=num2,num1 (파이썬만 가능)
+sum=0
+for i in range(num1,num2+1):
+        sum=sum+i
+        print("i: {}, sum: {}".format(i,sum))
+print("{}에서 {}까지의 합계: {}".format(num1,num2,sum))
 
 
 
