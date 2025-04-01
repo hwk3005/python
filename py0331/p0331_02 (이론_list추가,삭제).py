@@ -22,7 +22,7 @@ print(a_list)
 # 리스트 내포
 a_list=[i for i in range(1,11)]
 print(a_list)       # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
+# --------------------------------------------
 # 리스트 추가: append (명령어 추가하는 방법)
 a_list=[]
 for i in range(1,11):
