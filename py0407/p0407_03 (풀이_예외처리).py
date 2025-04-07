@@ -4,6 +4,7 @@ raise NotImplementedError  # 프로그램 구현이 아직 진행이 안되었�
 print(3)
 
 
+
 # try:          # 프로그램 구현부분
 #     print(1)
 #     print(2)
