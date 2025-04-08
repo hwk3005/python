@@ -38,16 +38,16 @@ print("당첨개수: {}".format(lotto_count))
 print("당첨번호: {}".format(lotto_list))
 
 
-# Q1. 반복해서, ran_list 10개를 입력시키는 프로그램을 구현하시오.
-# 단, 같은 숫자가 들어가지 않도록 하시오.
+# # Q1. 반복해서, ran_list 10개를 입력시키는 프로그램을 구현하시오.
+# # 단, 같은 숫자가 들어가지 않도록 하시오.
 
-ran_list=[]
-i=0
-while i<10:
-    ran_input=random.randint(1,10)
-    ran_input=int(input("{}번째 숫자를 입력하세요: ".format(i+1)))
-    if ran_input not in ran_list:
-        ran_list.append(ran_input)
-        i+=1  # i=i+1
-print(ran_list)
+# ran_list=[]
+# i=0
+# while i<10:
+#     ran_input=random.randint(1,10)
+#     ran_input=int(input("{}번째 숫자를 입력하세요: ".format(i+1)))
+#     if ran_input not in ran_list:
+#         ran_list.append(ran_input)
+#         i+=1  # i=i+1
+# print(ran_list)
 

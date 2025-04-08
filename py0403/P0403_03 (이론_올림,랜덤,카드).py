@@ -14,13 +14,13 @@ import random
 cList=[]
 sh=["CLOVER","HAERT",'DIAMOND',"SPADE"]
 no=["",'A','2','3','4','5','6','7','8','9','10','J','Q','K']
-# -------------------
+
 # 카드 생성
 for i in range(52):
     cList.append({"shape":i//13,"no":i%13+1})
 # 카드 랜덤으로 섞기
 random.shuffle(cList)
-# -------------------
+
 # myCard, youCard
 # 5장을 입력
 myCard=[]
@@ -30,7 +30,7 @@ for i in range(5):
     myCard.append(cList[i])
 for i in range(5,10):
     youCard.append(cList[i])
-# -------------------
+
 # 내카드 출력
 print("[ 내카드 ]")
 for i in myCard:
@@ -39,7 +39,8 @@ for i in myCard:
 print("[ 상대카드 ]")
 for i in youCard:
     print(f"[ {sh[ i['shape']]}, {no[i['no']]} ]")
-# -------------------
+
+
 # Q. 내카드, 상대카드를 비교해서 - 승리,패배,무승부 알아내기
 #    숫자만 비교해서 숫자가 높은 카드 => 승리    # 0,0 1,1 2,2 3,3
 score=[0]*5  # [2,1,2,2,0]
@@ -53,6 +54,7 @@ for i in range(5):
         
 print("[ 카드 승부 확인 ]")
 print(f"승리: {score.count(2)}, 패배: {score.count(1)}, 무승부: {score.count(0)}")
+
 # 승리한 카드 출력
 print("[ 승리카드 ]")
 for i,c in enumerate(myCard):

@@ -20,13 +20,21 @@ class Student:
         self.total=self.kor + self.eng + self.math  # (위에 self.kor/eng/math 가져와서 self.total로 다시 돌려놓음)
     def stu_avg(self):
         self.avg=self.total/3
-        
+    
+    def __le__(self,s):
+        return (self.total<=s.total)
+    def __ge__(self,s):
+        return (self.total>=s.total)
+    
+    def __eq__(self,s):     # 다른 객체 1개를 매개변수로 전달받음.
+        return(self.total == s.total)  # 같으면 True, 다르면 False
+    
     def __str__(self):
         return f"""{self.no},{self.name},{self.kor},{self.eng},{self.math},{self.total},{self.avg:.2f},{self.rank}"""
 
 class Students:
     def __init__(self):
-        self.students = []
+        self.students = []  
     
     def add(self,s):
         self.students.append(s)    
