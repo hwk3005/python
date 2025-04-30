@@ -10,8 +10,8 @@ def stu_print():
     print("3. 학생성적수정")
     print("4. 등수처리")
     print("5. 학생성적정렬")
-    # print("6. 학생성적삭제")
-    # print("7. 학생성적저장")  #파일저장
+    print("6. 학생성적삭제")
+    print("7. 학생성적저장")  #파일저장
     print("0. 프로그램 종료")
     print("-"*40)
     choice=int(input("원하는 번호를 입력하세요.>> "))

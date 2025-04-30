@@ -3,17 +3,26 @@
 
 from stuFunc import *
 
-students=[
-    {"no":1,"name":"홍길동","kor":100,"eng":100,"math":100,"total":300,"avg":100,"rank":1},
-    {"no":2,"name":"유관순","kor":100,"eng":100,"math":99,"total":299,"avg":99.67,"rank":2},
-    {"no":3,"name":"이순신","kor":100,"eng":100,"math":99,"total":299,"avg":99.67,"rank":2}
-]
-count=4
+# 변수정의 ------------------------------------------
+students=[]
+##### 파일 불러오기
+# stu.txt파일에서 데이터 읽어와 students=[] 데이터 입력시킴.
+with open("py0430/stu.txt","r",encoding="utf8") as f:
+    while True:             # 여러줄일 때 반복문 적용
+        line=f.readline()   # 1줄 읽어오기
+        if not line: break  # 문자열 없을 때 종료
+        s=line.strip().split(",")   # 1줄 문자열을 strip공백제거하고 split,콤마 기준으로 분리
+        students.append({
+            "no":int(s[0]),"name":(s[1]),"kor":int(s[2]),"eng":int(s[3]),
+            "math":int(s[4]),"total":int(s[5]),"avg":float(s[6]),"rank":int(s[7])
+        })
+        
+
+count=6
 title=['번호','이름','국어','영어','수학','합계','평균','등수']
 choice=0
 
-
-    
+# 프로그램 시작 ---------------------------------------
 while True:
     ## 화면출력 부분
     choice=stu_print()
@@ -21,7 +30,7 @@ while True:
     if choice==1:   # 1. 학생성적 입력부분
         count=stu_input(count,students)
     
-    if choice==2:   # 2. 학생성적 출력부분
+    elif choice==2:   # 2. 학생성적 출력부분
         print(" "*20,"[ 2. 학생성적출력 ]")
         print("-"*60)
         print("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}".format(*title))
@@ -30,7 +39,7 @@ while True:
             print(f"{s['no']}\t{s['name']}\t{s['kor']}\t{s['eng']}\t{s['math']}\t{s['total']}\t{s['avg']:.2f}\t{s['rank']}")
         print()
     
-    if choice==3:   # 3. 학생성적 수정부분
+    elif choice==3:   # 3. 학생성적 수정부분
         print("[ 3. 학생성적수정 ]")
         temp=0  # 찾지 못했을 경우
         name=input("수정하려고 하는 학생이름을 입력하세요.>> ") # input
@@ -79,7 +88,7 @@ while True:
             print(f"{name} 학생을 찾지 못했습니다. 다시 입력하세요.")
             print()
     
-    if choice==4:   # 4. 등수처리
+    elif choice==4:   # 4. 등수처리
         print("[ 4. 등수처리 ]")
         for s in students:
             num=1
@@ -90,7 +99,7 @@ while True:
         print("등수처리가 완료되었습니다.")
         print()
         
-    if choice==5:   # 5. 학생성적정렬
+    elif choice==5:   # 5. 학생성적정렬
         students2=[*students]  # 복사
         print("[ 5. 학생성적정렬 ]")
         print("1. 이름 순차정렬")
@@ -117,12 +126,37 @@ while True:
         elif choice==0:   # 이전화면이동
             continue
         print(title,students2)
-        
-        
-    if choice==0:   # 0. 프로그램 종료
+    
+    elif choice==6: # 6. 학생성적삭제
+        print("[ 6. 학생성적삭제 ]")
+        name=input("삭제하고자 하는 학생이름을 입력하세요.>> ") # 학생이름 입력받기
+        temp=0  # 찾지 못했을 경우
+        for i,s in enumerate(students):
+            if name==s['name']:
+                temp=1  # 찾았을 경우
+                print(f"{s['no']}번 {name} 학생을 찾았습니다.")  # 찾았다고 알려주기
+                answer=input("학생성적을 삭제할까요?(y or n),(*삭제후 복구불가)>> ") # 삭제할지 물어보고 입력받기 (복구불가)
+                if answer=="y":
+                    del students[i]
+                    print(f"{name} 학생을 삭제했습니다.")
+                else: print("삭제를 취소했습니다.")
+                print()
+                break
+        if temp==0:  # 못 찾았을 경우
+            print(f"{name} 학생을 찾지 못했습니다. 다시 입력하세요!!")
+            print()
+            
+    elif choice==7:  # 7. 학생성적저장
+        print("[ 7. 학생성적저장 ]")
+        with open("py0430/stu.txt","w",encoding="utf8") as f:
+            for s in students:
+                data=f"{s['no']},{s['name']},{s['kor']},{s['eng']},{s['math']},{s['total']},{s['avg']},{s['rank']}\n"
+                f.write(data)
+        print("파일이 저장되었습니다.")
+        print()              
+    
+                
+    elif choice==0:   # 0. 프로그램 종료
         print("[ 프로그램 종료 ]")
         break
-
-    
-    
 
