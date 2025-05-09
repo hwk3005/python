@@ -17,10 +17,10 @@ class Student:
         Student.count += 1           # 1증가
     
     def stu_total(self):
-        self.total=self.kor + self.eng + self.math  # (위에 self.kor/eng/math 가져와서 self.total로 다시 돌려놓음)
+        self.total = self.kor+self.eng+self.math 
     def stu_avg(self):
-        self.avg=self.total/3
-        
+        self.avg = self.total/3       
+    
     def __str__(self):
         return f"""{self.no},{self.name},{self.kor},{self.eng},{self.math},{self.total},{self.avg:.2f},{self.rank}"""
 
@@ -31,10 +31,15 @@ class Students:
     def add(self,s):
         self.students.append(s)    
   
-    def __str__(self):  # 리턴이 무조건 문자열을 해줘야 함.
-        
+    def __str__(self):  # 리턴이 무조건 문자열을 해줘야 함.        
+        sstr = ""
         for s in self.students:
-            print(s.no,s.name,s.kor,s.eng,s.math,s.total,s.avg,s.rank)
-        return "" 
+            sstr += f"{s.no},{s.name},{s.kor},{s.eng},{s.math}\n"
+            # print(s.no,s.name,s.kor,s.eng,s.math,s.total,s.avg,s.rank)
+        return sstr 
 
-      
+# ss = Students()
+# ss.add(Student("홍길동",100,100,99))
+# ss.add(Student("유관순",90,100,99))
+# print(ss)
+
