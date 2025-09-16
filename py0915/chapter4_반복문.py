@@ -245,5 +245,225 @@
 # p240 ----- while 반복문 -----
 # ======================================
 # p240 -- 예제1 -- 무한반복
+# while True:
+#     print(".", end="")
+# 예제2 -- while반복문: for반복문처럼 사용하기
+# i=0
+# while i < 10:
+#     print("{}번째 반복입니다.".format(i))
+#     i+=1
+# 예제3 -- 상태 기반으로 반복 : 해당하는 값 모두 제거하기
+# list_test = [1,2,1,2]
+# value = 2
+# while value in list_test:
+#     list_test.remove(value)
+# print(list_test)
 
+# 유닉스타임 UTC (세계표준시)
+# import time
+# print(time.time())
+# 예제4 -- 시간 기반으로 반복 : 5초 동안 반복하기
+# import time
+# number = 0
+# target_tick = time.time()+5
+# while time.time() < target_tick:
+#     number+=1
+# print(f"5초 동안 {number}번 반복했습니다.")
+# 예제5 -- break 키워드
+# i=0
+# while True:
+#     print(f"{i}번째 반복문입니다.")
+#     i+=1
+#     input_text=input("종료하시겠습니까?(y/n)>>")
+#     if input_text in ["y","Y"]:
+#         print("반복을 종료합니다.")
+#         break
+# 예제6 -- continue 키워드
+# numbers = [5,15,6,20,7,25]
+# for number in numbers:
+#     if number < 10:     # 10보다 작으면 반복대상에서 제외
+#         continue
+#     print(number)
 
+# ======================================
+# p250 -- 문자열, 리스트, 딕셔너리 관련 기본함수 --  min(),max(),sum(), reversed(), enumerate()-list, items()-dict, 리스트 내포
+# ======================================
+# 예제1 -- 리스트에 적용할 수 있는 기본함수: min()최솟값, max()최댓값, sum()합
+# numbers = [103,52,273,32,77]
+# print("최소값:",min(numbers))
+# print("최대값:",max(numbers))
+# print("총합계:",sum(numbers))
+
+# 예제2 -- 리스트 뒤집기 (역순정렬) : reversed() 함수 - 결과 제너레이터
+# 1) 
+# list_a = [1,2,3,4,5]
+# list_reversed = reversed(list_a)
+# print("reversed([1,2,3,4,5]):",list_reversed)
+# print("list(reversed([1,2,3,4,5])):",list(list_reversed))
+# print("for i in reversed([1,2,3,4,5]):")
+# for i in reversed(list_a):
+#     print("-",i)
+# print(list(reversed(list_a)))
+# 2) 안 쓰는 예
+# temp = reversed([1,2,3,4,5,6])
+# for i in temp:
+#     print(f"첫 번째 반복문: {i}")
+# for i in temp:
+#     print(f"두 번째 반복문: {i}")
+# 3) 수정본
+# numbers = [1,2,3,4,5,6]
+# for i in reversed(numbers):
+#     print("첫번째 반복문: {}".format(i))
+# for i in reversed(numbers):
+#     print("두번째 반복문: {}".format(i))
+
+# 예제3 -- enumerate() 함수와 반복문 조합하기  # enumerate 사용시 반복변수 2개 넣기 가능 (ex. for i,n in numbers)
+# example_list = ["요소A","요소B","요소C"]
+# # 1) 방법1 - enumerate() 함수 사용x
+# i=0
+# for item in example_list:
+#     print(f"{i}번째 요소는 {item}입니다.")
+#     i+=1
+# # 2) 방법2 - enumerate() 함수 사용x
+# for i in range(len(example_list)):
+#     print(f"{i}번째 요소는 {example_list[i]}입니다.")
+# 3) enumerate() 함수 사용o
+# print("단순출력:",example_list)
+# print("enumerate사용:",enumerate(example_list))  # 주소값 출력됨
+# print("list함수로 강제변환후 출력:",list(enumerate(example_list)))
+# print("for문과 enumerate함수 조합")
+# for i, value in enumerate(example_list):      # enumerate 사용시 반복변수 2개 넣기 가능
+#     print(f"{i}번째 요소는 {value}입니다.")
+
+# 예제4 -- 딕셔너리 items()함수 & 반복문
+# example_dictionary = {
+#     "키A":"값A",
+#     "키B":"값B",
+#     "키C":"값C"
+# }
+# print("items():",example_dictionary.items())
+# for key, element in example_dictionary.items():
+#     print("dictionary[{}] = {}".format(key,element))
+
+# p257 -- 예제5 -- 리스트내포 : 반복문 사용한 리스트 생성
+# array = []
+# for i in range(0,20,2):
+#     array.append(i*i)
+# print(array)  # [0, 4, 16, 36, 64, 100, 144, 196, 256, 324] (0*0, 2*2, 4*4, 6*6, 8*8, ...)
+# 예제6 -- 리스트내포 : 리스트 안에 for문 사용하기
+# array = [i*i for i in range(0,20,2)]
+# print(array)
+
+# 리스트내포 list comprehensions
+# 리스트이름 = [표현식 for 반복자 in 반복할 수 있는 것 (if 조건문) ]
+
+# 예제6 -- 리스트내포 : 조건을 활용한 리스트내포
+# array = ["사과","자두","초콜릿","바나나","체리"]
+# output = [fruit for fruit in array if fruit != "초콜릿"]
+# print(output)
+
+# ======================================
+# p260 -- 구문 내부에 여러 줄 문자열 사용했을 때 문제점 - 해결방법: 괄호로 문자열 연결, 문자열 join()함수 사용
+# ======================================
+# 예제1 -- 문제
+# number = int(input("정수입력>> "))
+# if number%2 == 0:
+#     print("""\
+#         입력한 문자열은 {}입니다.
+#         {}는(은) 짝수입니다.""".format(number,number))
+# else:
+#     print("""\
+#         입력한 문자열은 {}입니다.
+#         {}는(은) 홀수입니다.""".format(number,number))
+
+# 예제2 -- 해결방법1 : 괄호로 문자열 연결하기
+# 1) 예시
+# test = {
+#     "이렇게 입력해도 "
+#     "하나의 문자열로 연결되어 "
+#     "생성됩니다."
+# }
+# print("test:",test)
+# print("type(test):",type(test))
+# 2) 위 문제 괄호로 해결
+# number = int(input("정수입력>> "))
+# if number%2 == 0:
+#     print( (
+#         "입력한 문자열은 {}입니다.\n"
+#         "{}는(은) 짝수입니다."
+#     ).format(number,number) )
+# else:
+#     print( (
+#         "입력한 문자열은 {}입니다.\n"
+#         "{}는(은) 홀수입니다."
+#     ).format(number,number) )
+
+# 예제3 -- 해결방법2 : 문자열 join() 함수: 리스트 요소를 문자열로 연결 => 문자열.join(문자열로 구성된 리스트)
+# 1) 예시
+# print("::".join(["1","2","3","4","5"]))
+# 2) 위 문제 join()함수로 해결
+# number = int(input("정수입력>>"))
+# if number%2 == 0:
+#     print("\n".join([
+#         "입력한 문자열은 {}입니다.",
+#         "{}는(은) 짝수입니다."
+#     ]).format(number,number) )
+# else:
+#     print("\n".join([
+#         "입력한 문자열은 {}입니다.",
+#         "{}는(은) 홀수입니다."
+#     ]).format(number,number) )
+
+# ======================================
+# p264 -- 이터레이터iterator : 이터러블 중 next()함수 적용해 하나하나 꺼낼 수 있는 요소
+# ======================================
+# for 반복자 in 이터러블iterable(반복할 수 있는 것)
+# 예제1 -- reversed() 함수와 이터레이터
+# numbers = [1,2,3,4,5,6]
+# r_num = reversed(numbers)
+# print("reversed_numbers:",r_num)
+# print(next(r_num))
+# print(next(r_num))
+# print(next(r_num))
+# print(next(r_num))
+# for i in reversed(numbers):
+#     print(i)
+
+# reversed() 역순정렬
+# enumerate() 매개변수에 리스트 넣으면 인덱스, 값 쌍으로 사용해 반복문 돌릴 수 있게 해주는 함수
+# items() 키와 쌍으로 사용해 반복문 돌릴 수 있게 해주는 딕셔너리 함수
+# 리스트내포 반복문, 조건문을 대괄호[] 안에 넣어 리스트 생성하는 파이썬의 특수한 구문
+
+# 4장 도전문제
+# (문제1)
+# list = [1,2,3,4,1,2,3,1,4,1,2,3]
+# counter = {}
+# for i in list:
+#     if i not in counter:
+#         counter[i] = 0
+#     counter[i] += 1
+# print( (f"{list}에서\n"
+#         f"사용된 숫자의 종류는 {len(counter)}개입니다.") )
+# (문제2)
+# nucleos = input("염기 서열을 입력해주세요(a,t,g,c)>> ")
+# counter = {
+#     "a":0,
+#     "t":0,
+#     "g":0,
+#     "c":0
+# }
+# for nucleo in nucleos:
+#     counter[nucleo]+=1
+# for key in counter:
+#     print(f"{key}의 개수: {counter[key]}")
+# (문제3)
+# nucleos = input("염기 서열을 입력해주세요(a,t,g,c)>> ")
+# counter = {}
+# for i in range(0, len(nucleos),3):
+#     codon = nucleos[i:i+3]  # 3글자씩 추출
+#     if len(codon) == 3:
+#         if codon not in counter:
+#             counter[codon]=0
+#         counter[codon]+=1
+# print(counter)
+# (문제4)
