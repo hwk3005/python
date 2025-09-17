@@ -466,4 +466,14 @@
 #             counter[codon]=0
 #         counter[codon]+=1
 # print(counter)
-# (문제4)
+# (문제4)   - 정답: p537
+# a = [1,2,[3,4],5,[6,7],[8,9]]
+# output = []  # 최종적으로 평탄화된 결과를 넣을 빈 리스트 준비
+# for i in a:  # a의 요소 하나씩 꺼내옴 / i : 1, 2, [3,4], 5, [6,7], [8,9]
+#     if type(i) == list:
+#         for j in i:  # i의 리스트요소 하나씩 꺼냄 / ex) i = [3,4]라면 j는 3, 4
+#             output.append(j)
+#     else:
+#         output.append(i)
+# print( (f"{a}를 평탄화하면\n"
+#         f"{output}입니다.") )
