@@ -250,6 +250,10 @@
 # ======================================
 # p316 ----- 05-3 함수 고급 - 튜플 : 리스트와 비슷한 자료형, 차이점: 내부요소변경 불가능 -----
 # ======================================
+# p317 -- 기본
+# tuple_test = (10,20,30)
+# print(tuple_test[0],tuple_test[1],tuple_test[2])
+# tuple_test[0] = 1   # TypeError: 'tuple' object does not support item assignment
 # p318 -- 예제1 -- 리스트와 튜플의 특이한 사용
 # [a,b] = [10,20]  # 리스트
 # (c,d) = (10,20)  # 튜플
@@ -277,3 +281,371 @@
 # print("# 교환 후 값")
 # print("a:",a)
 # print("b:",b)
+
+# 250918
+# 예제1 - 복습
+# [a,b]=[10,20]
+# (c,d)=(10,20)
+# print(a,b,c,d)
+# 예제2 - 복습
+# tuple_test = 10,20,30,40
+# print(tuple_test)
+# print(type(tuple_test))
+# a,b,c = 10,20,30
+# print(a,b,c)
+# 예제3 - 복습
+# a,b = 10,20
+# print(a,b)
+# a,b = b,a
+# print(a,b)
+
+# 예제1 -- 튜플과 함수 : 여러 개의 값 리턴하기
+# def test():
+#     return (10,20)
+# a,b = test()
+# print(a,b)
+# 예제2 -- 튜플 리턴하는 함수 예
+# for i,value  in enumerate([1,2,3,4,5,6]):
+#     print("{}번째 요소는 {}입니다.".format(i,value))
+# a,b = 97,40         # 튜플x, 각각 독립된 int타입
+# print(a//b,a%b)     # 튜플x
+# print(divmod(a,b))  # 튜플o, divmod() 함수: 튜플형태로 몫,나머지 리턴
+# x,y = divmod(a,b)   # 언패킹됨(튜플->int)
+# print(x,y)          # 튜플x, int타입
+# print(type(x),type(y))
+
+# ======================================
+# p322 ----- 05-3 함수 고급 - 람다 들어가기 전  -----
+# ======================================
+# 콜백 함수 callback function : 함수의 매개변수에 사용하는 함수
+# 예제1 -- 함수의 매개변수로 함수 전달하기
+# def call_10_times(func):    # "넘겨받은(매개변수) 함수를 10번 실행(호출)해주는 함수"
+#     for i in range(10):
+#         func()              # func() == print_hello() 함수 호출하니 print("안녕하세요")가 출력됨
+# # 간단히 출력하는 함수
+# def print_hello():
+#     print("안녕하세요")
+# # 조합하기
+# call_10_times(print_hello)  
+
+# 예제2 -- map(), filter() 함수 : map/filter(함수,리스트) : 함수를 매개변수로 사용하는 대표적인 표준함수(내장함수)
+# def power(item):    # 함수 선언
+#     return item * item
+# def under_3(item):
+#     return item < 3
+# list_input_a = [1,2,3,4,5]  # 변수 선언
+# # map() 함수 사용
+# output_a = map(power, list_input_a)       # map(함수,리스트) → 리스트의 모든 원소에 함수를 적용
+# print("map(power, list_input_a):", output_a)    # 주소값 출력됨 : 제너레이터 generator
+# print("map(power, list_input_a):", list(output_a)) # 리스트 출력됨
+# # filter() 함수 사용
+# output_b = filter(under_3, list_input_a)  # filter(조건함수, 리스트) → 리스트의 원소 중에서 조건 함수가 True인 값만 걸러서 반환
+# print("filter(under_3, list_input_a):", output_b)  # “True/False로 판별되는 값”만 보고 걸러냄
+# print("filter(under_3, list_input_a):", list(output_b))
+# 예제2 -- 복습풀이
+# def power(item):
+#     return item * item
+# def under_3(item):
+#     return item < 3
+# list_a = [1,2,3,4,5]
+# output_a = map(power, list_a)
+# print("map: ",list(output_a))  # map:  [1, 4, 9, 16, 25]
+# output_b = filter(power, list_a)
+# print("filter: ",list(output_b)) # filter:  [1, 2, 3, 4, 5]
+# # filter()가 함수의 True/False 결과값 자체를 반환하는 게 아니라,
+# # 그 결과가 True인 경우에만 원래 원소를 결과에 남겨둠.
+# output_a = map(under_3, list_a)
+# print("map: ",list(output_a))  # map:  [True, True, False, False, False] : 3이하 값만 True로 처리
+# output_b = filter(under_3, list_a)
+# print("filter: ",list(output_b)) # filter:  [1, 2]
+
+# ======================================
+# p324 ----- 05-3 함수 고급 - 람다 lambda : 간단한 함수를 쉽게 선언하는 방법  -----
+# ======================================
+# 예제1 -- 람다 (lambda 매개변수: 리턴값)
+# power = lambda x: x*x   # 함수 선언
+# under_3 = lambda x: x<3
+# list_input_a = [1,2,3,4,5]  # 변수 선언
+# output_a = map(power, list_input_a)
+# print("map(power, list_input_a):", output_a)
+# print("map(power, list_input_a):", list(output_a))
+# output_b = filter(under_3, list_input_a)
+# print("filter(under_3, list_input_a):", output_b)
+# print("filter(under_3, list_input_a):", list(output_b))
+# 예제2 -- 인라인 람다
+# list_input_a = [1,2,3,4,5]  # 변수 선언
+# output_a = map(lambda x: x*x, list_input_a)
+# print("map(power, list_input_a):", output_a)
+# print("map(power, list_input_a):", list(output_a))
+# output_b = filter(lambda x: x<3, list_input_a)
+# print("filter(under_3, list_input_a):", output_b)
+# print("filter(under_3, list_input_a):", list(output_b))
+
+# 람다 복습
+# 1) 함수 선언해서 map(), filter()
+# list_input_a = [1,2,3,4,5]
+# def power(item):
+#     return item * item
+# def under_3(item):
+#     return item < 3
+# output_a = map(power, list_input_a)
+# print("map:",list(output_a))
+# output_b = filter(under_3, list_input_a)
+# print("filter:", list(output_b))
+
+# 2) (아웃라인) 람다 사용, map(), filter()
+# list_input_a = [1,2,3,4,5]
+# power = lambda x: x*x
+# under_3 = lambda x: x<3
+# output_a = map(power, list_input_a)
+# print("map: ", list(output_a))
+# output_b = filter(under_3, list_input_a)
+# print("filter: ", list(output_b))
+
+# 3) (인라인) 람다 사용, map(), filter()
+# list_input_a = [1,2,3,4,5]
+# output_a = map(lambda x: x*x, list_input_a)
+# print("map:", list(output_a))
+# output_b = filter(lambda x: x<3, list_input_a)
+# print("filter:", list(output_b))
+
+# ======================================
+# p326 ----- 05-3 함수 고급 - 파일처리  -----
+# ======================================
+# 파일 - 텍스트 파일 / 바이너리 파일
+# 예제1 -- 파일 열고 닫기, open(), close() 해야 됨
+# 파일 객체 = open(문자열: 파일경로, 문자열: 모드)  / *모드: w (write새로 쓰기), a (append뒤에이어서 쓰기), r (read읽기)
+# file = open("basic.txt","w")    # 파일 열기
+# file.write("Hello Python..!")   # 파일 텍스트 쓰기
+# file.close()                    # 파일 닫기
+
+# 예제2 -- with 키워드 - open() - close() 안해도 됨
+# with open(문자열: 파일경로(파일명), 문자열: 모드) as 파일 객체: 문장
+# with open("basic.txt","w") as file:
+#     file.write("Hi PYTHON..!")
+# 예제3 -- 텍스트 새로쓰기 write(), 텍스트 읽기 read()  # 파일객체.write/read()
+# with open("basic.txt","r") as file:
+#     contents = file.read()
+# print(contents)
+# 예제4 -- 랜덤하게 1000명의 키와 몸무게 만들기
+# import random
+# hanguls = list("가나다라마바사아자차카타파하")
+# with open("info.txt","w") as file:
+#     for i in range(1000):
+#         name = random.choice(hanguls) + random.choice(hanguls)
+#         weight = random.randrange(40,100)
+#         height = random.randrange(140,200)
+#         file.write(f"{name}, {weight}, {height}\n")
+# 예제5 -- 반복문으로 파일 한 줄씩 읽기
+# for 한 줄을 나타내는 문자열 in 파일객체: 처리
+# with open("info.txt","r") as file:
+#     for line in file:   # line: 한 줄씩 읽기
+#         (name, weight, height) = line.strip().split(", ")  # p142 -- 문자열 양옆 공백제거: strip()
+#         if (not name) or (not weight) or (not height):
+#             continue
+#         bmi = int(weight)/( (int(height)/100)**2 )  # 몸무게(kg) ÷ (키(m))² / 키(cm → m 변환) → int(height)/100
+#         result = ""  # 변수 선언
+#         if 25 <= bmi:
+#             result = "과체중"
+#         elif 18.5 <= bmi:
+#             result = "정상체중"
+#         else:
+#             result = "저체중"
+#         print("\n".join([       # "\n"엔터키로 문자열 연결
+#             "이름: {}", "몸무게: {}", "키: {}", "BMI: {:.2f}", "결과: {}"
+#         ]).format(name,weight,height,bmi,result) )
+#         print()
+# (복습) 반복문으로 파일 한 줄씩 읽기, info.txt, bmi 계산
+# with open("info.txt","r") as file:
+#     for line in file:
+#         # 변수 선언
+#         (name, weight, height) = line.strip().split(", ")
+#         # 데이터에 문제 없는지 확인
+#         if (not name) or (not weight) or (not height):
+#             continue
+#         # 결과 계산
+#         bmi = int(weight) / ((int(height)/100)**2)
+#         result = ""
+#         if 25 <= bmi:
+#             result = "과체중"
+#         elif 18.5 <= bmi:
+#             result = "정상 체중"
+#         else:
+#             result = "저체중"
+#         # 출력
+#         print("\n".join([
+#             "이름: {}", "몸무게: {}", "키: {}", "BMI: {}", "결과: {}"
+#         ]).format(name, weight, height, bmi, result))
+#         print()
+
+# ======================================
+# p336 ----- 05-3 함수 고급 - 좀더알아보기 : 제너레이터  -----
+# ======================================
+# 제너레이터 generator (이터레이터를 직접 만들 때 사용하는 코드)
+# 함수 내부에 yield 키워드 사용시 -> 제너레이터 함수됨 => 제너레이터 리턴함(리턴값(제너레이터 객체): <generator object test at 0x0000017FCDF55B40>)
+# 제너레이터 객체: 함수의 코드를 조금씩 실행할 때 사용함.
+# 예제1 -- 제너레이터 함수
+# def test():
+#     print("함수가 호출되었습니다.")
+#     yield "test"
+# print("A 지점 통과")
+# test()
+# print("B 지점 통과")
+# test()
+# print(test())
+# (복습)
+# def test():
+#     print("함수가 호출되었습니다.")
+#     yield "test"
+# print("A 지점 통과")
+# print(next(test()))
+# print("B 지점 통과")
+# print(test())
+
+# 예제2 -- 제너레이터 객체와 next() 함수
+# 1) 함수 선언
+# def test():
+#     print("A 지점 통과")
+#     yield 1
+#     print("B 지점 통과")
+#     yield 2
+#     print("C 지점 통과")
+# # 2) 함수 호출
+# output = test()
+# print("D 지점 통과")
+# a = next(output)
+# print(a)
+# print("E 지점 통과")
+# b = next(output)
+# print(b)
+# print("F 지점 통과")
+# c = next(output)
+# print(c)        # 함수 호출 이후 yield 키워드 못 만나고 함수 끝나면 StopIteration
+# next(output)
+
+# ======================================
+# p338 ----- 05-3 함수 고급 - 좀더알아보기 : 리스트함수의 key 키워드 매개변수  -----
+# ======================================
+# 예제1 -- min(), max() 함수 복습
+# a = [52,273,32,103,57]
+# print(min(a))
+# print(max(a))
+# 예제2 -- 키워드 매개변수에 함수 전달하기
+# books = [{
+#     "제목": "혼자 공부하는 파이썬",
+#     "가격": 18000
+# }, {
+#     "제목": "혼자 공부하는 머신러닝 + 딥러닝",
+#     "가격": 26000
+# }, {
+#     "제목": "혼자 공부하는 자바스크립트",
+#     "가격": 24000
+# }]
+# def price_output(book):
+#     return book["가격"]
+# print("min:",min(books, key=price_output))
+# print("max:",max(books, key=price_output))
+# 예제3 -- 콜백 함수를 람다로 바꾸기
+# books = [{
+#     "제목": "혼자 공부하는 파이썬",
+#     "가격": 18000
+# }, {
+#     "제목": "혼자 공부하는 머신러닝 + 딥러닝",
+#     "가격": 26000
+# }, {
+#     "제목": "혼자 공부하는 자바스크립트",
+#     "가격": 24000
+# }]
+# print(min(books, key=lambda book: book["가격"]))
+# print(max(books, key=lambda book: book["가격"]))
+
+# 예제4 -- sort() 정렬
+# a = [52,273,103,32,57,272]
+# a.sort()
+# print("순차정렬:",a)
+# a.sort(reverse=True)
+# print("역순정렬:",a)
+# 예제 5 -- 딕셔너리 오름차순 정렬하기 (가격 기준), 람다 활용
+# books = [{
+#     "제목": "혼자 공부하는 파이썬",
+#     "가격": 18000
+# }, {
+#     "제목": "혼자 공부하는 머신러닝 + 딥러닝",
+#     "가격": 26000
+# }, {
+#     "제목": "혼자 공부하는 자바스크립트",
+#     "가격": 24000
+# }]
+# 순차정렬 (오름차순)
+# books.sort(key=lambda book: book["가격"])
+# for book in books:
+#     print(book)
+# 역순정렬 (내림차순)
+# books.sort(reverse=True, key=lambda book: book["가격"])
+# for book in books:
+#     print(book)
+
+# ======================================
+# p342 ----- 05-3 함수 고급 - 좀더알아보기 : 스택, 힙  -----
+# ======================================
+# 스택 stack : 기본자료형 보관공간
+# ex) a=10, b=True, c="안녕하세요"  => 스택: 아래서부터 위로 쌓임
+# 힙 heap : 객체자료형 보관공간 / 리스트,딕셔너리 주소값(자료위치or레퍼런스) -> 스택에 기록(0x... 16진수표현)
+
+# ======================================
+# p345 ----- 05-3 함수 고급 - 좀더알아보기 : 함수의 값 복사와 레퍼런스 복사  -----
+# ======================================
+# 전역스택 global stack: 가장 외곽에 있는 스택, 함수스택
+# 예제1 -- 기본자료형 복사
+# def primitive_change(b):
+#     b=20
+# a=10
+# print(a)
+# primitive_change(a)
+# print(a)
+# 예제2 -- 객체자료형 복사
+# def object_change(d):
+#     d.append(4)
+# c = [1,2,3]
+# print(c)
+# object_change(c)
+# print(c)
+# 예제3 -- 객체자료형 복사
+# def object_change2(f):
+#     f = [4,5,6]  # → 새 리스트에 재할당 (원본 영향 X)
+#     # f[0] = 4   # → 리스트 내부 값 변경 (원본 영향 O)
+#     # f[1] = 5
+#     # f[2] = 6
+# e = [1,2,3]
+# print(e)
+# object_change2(e)
+# print(e)
+
+# ======================================
+# p350 ----- 05-3 함수 고급 - 좀더알아보기 : global 키워드  -----
+# ======================================
+# 읽기 + 객체 내부 수정 → global 필요 없음.
+# 재할당 (a = ... ) → global 필요함.      # UnboundLocalError 에러 발생 (global 추가 안할경우)
+# 예제1 -- 객체 내부 수정
+# a = [1,2,3]
+# def func():
+#     print(a)
+#     a.append(4)
+#     print(a)
+# func()
+# 예제2 -- 재할당
+# a = 10
+# def func():
+#     # global a
+#     print(a)
+#     a = 20
+#     # print(a)
+# func()
+# 예제3 -- 재할당(리스트)
+# a = [1,2,3]
+# def func():
+#     # global a
+#     print(a)
+#     a = [4,5,6]
+#     # print(a)
+# func()
