@@ -331,6 +331,7 @@
 # print("단순출력:",example_list)
 # print("enumerate사용:",enumerate(example_list))  # 주소값 출력됨
 # print("list함수로 강제변환후 출력:",list(enumerate(example_list)))
+
 # print("for문과 enumerate함수 조합")
 # for i, value in enumerate(example_list):      # enumerate 사용시 반복변수 2개 넣기 가능
 #     print(f"{i}번째 요소는 {value}입니다.")

@@ -116,6 +116,7 @@
 # print("3!:",factorial(3))
 # print("4!:",factorial(4))
 # print("5!:",factorial(5))
+
 # 예제2 -- 재귀함수로 팩토리얼 구하기
 # def factorial(n):
 #     if n == 0:
@@ -127,6 +128,7 @@
 # print("3!:",factorial(3))
 # print("4!:",factorial(4))
 # print("5!:",factorial(5))
+
 # 예제3 -- 재귀함수로 구현한 피보나치 수열(1)
 # def fibonacci(n):
 #     if n == 1:
@@ -140,6 +142,7 @@
 # print("3:",fibonacci(3))
 # print("4:",fibonacci(4))
 # print("5:",fibonacci(5))
+
 # 예제4 -- 재귀함수로 구현한 피보나치 수열(2), global 키워드
 # counter = 0
 # def fibonacci(n):
@@ -155,6 +158,7 @@
 # fibonacci(10)
 # print("---")
 # print("fibonacci(10) 계산에 활용한 덧셈 횟수는 {}번입니다.".format(counter))
+
 # 예제5 -- 재귀함수로 구현한 피보나치 수열(3)
 # counter = 0
 # def fibonacci(n):
@@ -649,3 +653,49 @@
 #     a = [4,5,6]
 #     # print(a)
 # func()
+
+# ======================================
+# p352 ----- 05-3 함수 고급 - 문제풀이  -----
+# ======================================
+# 문제1 -- 
+# numbers = [1,2,3,4,5,6]
+# print("::".join(map(str,numbers)))
+# 문제2 -- 
+# numbers = list(range(1, 10+1))
+# print("# 홀수만 추출하기")
+# print(list(filter(lambda x: x%2 != 0, numbers)))
+# print("# 3이상, 7미만 추출하기")
+# print(list(filter(lambda x: 3 <= x < 7, numbers)))
+# print("# 제곱해서 50미만 추출하기")
+# print(list(filter(lambda x: x**2 < 50 , numbers)))
+# 도전문제1 -- 하노이탑 : 원판 개수가 n개일 때 어떻게 원판을 옮겨야 하는지 출력하도록 프로그램을 구현하시오.
+# def hanoi(disk, start, result, assistance):
+#     if disk == 1:
+#         print(start, "→", result)
+#     else:
+#         hanoi(disk-1, start, assistance, result)
+#         print(start, "→", result)
+#         hanoi(disk-1, assistance, result, start)
+# n = int(input("원판의 개수를 입력해주세요: "))
+# hanoi(n, "A탑", "B탑", "C탑")
+
+# 도전문제2 -- 하노이탑 : 원판 이동 횟수 구하시오.
+# count = 0
+# def hanoi(disk, start, result, assistance):
+#     global count
+#     if disk == 1:
+#         count += 1
+#     else:
+#         hanoi(disk-1, start, assistance, result)
+#         count += 1
+#         hanoi(disk-1, assistance, result, start)
+# n = int(input("원판의 개수를 입력해주세요: "))
+# hanoi(n, "A탑", "B탑", "C탑")
+# print(f"이동 횟수는 {count}회입니다.")
+
+# 위 방법 시간 오래 걸림 => 원판개수 n개일 때 (2**n)-1 움직여야 원판 모두 옮길 수 있음
+# def hanoi_move(n):
+#     return (2**n)-1
+# n = int(input("원판의 개수를 입력하세요.>>"))
+# print(f"이동 횟수는 {hanoi_move(n)}회입니다.")
+
