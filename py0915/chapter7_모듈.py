@@ -324,4 +324,45 @@
 # test_module.py ,  main.py 파일 참고
 # 예제1 -- 모듈 이름을 출력하는 모듈 만들기
 # 예제2 -- 모듈 활용하기
+# 예제3 -- 엔트리 포인트를 확인하는 모듈 만들기
+
+# 모듈  # import, from, as 구문
+# - 표준모듈: math, random, sys, os, datetime, time, urllib
+# - 예) import math as m / from math import sin, cos, tan
+# - 외부모듈: BeautifulSoup, Flask, 라이브러리, 프레임워크
+
+# p445 -- 패키지 package : 모듈이 모여서 구조를 이룬 것
+# pip (Python Package Index) : 패키지 관리 시스템 Package Management System
+
+# ======================================
+# p449 ----- 좀더알아보기 : 텍스트 데이터, 바이너리 데이터 -----
+# ======================================
+# 파일 - 크게 "텍스트 데이터 text data / 바이너리 데이터 binary data" 구분
+# 텍스트 데이터 : 쉽게 읽을 수 있음, 쉽게 편집 가능 (입력해왔던 모든 코드가 텍스트 데이터)
+# 바이너리 데이터 : 텍스트 에디터로 열었을 때 의미를 이해할 수 없는 데이터
+#  ㄴ 대표적 예: 이미지, 동영상 (-> 텍스트 데이터로 표현불가)
+
+# << 비교 >> 
+# 비교 항목     텍스트 데이터                         바이너리 데이터
+# 구분 방법     텍스트 에디터로 열었을 때 읽을 수 o      텍스트 에디터로 열어도 읽을 수 x 
+# 장점         사람이 쉽게 읽을 수 o, 쉽게 편집가능     용량 적음
+# 단점         용량 큼                              사람이 쉽게 읽을 수 x, 에디터로 편집불가
+
+# 인코딩 encoding : 텍스트 데이터를 맞춰서 읽기 쉬운 글자로 변환, 바이너리 데이터 읽어서 이미지로 변환하는 것
+#  ㄴ 텍스트데이터 - ASCII, UTF-8, UTF-16, EUC-KR, Shift-JIS 등
+#  ㄴ 바이너리데이터 - JPEG, PNG, GIF 등
+# 디코딩 deconding : 인코딩된 데이터를 반대로 돌리는 것
+
+# 예제1 -- 이미지 읽어 들이고 저장하기
+# import ssl
+# from urllib import request
+# # SSL 인증 무시 컨텍스트 생성
+# context = ssl._create_unverified_context()
+# target = request.urlopen("https://www.hanbit.co.kr/images/common/logo_hanbit.png", context=context)
+# output = target.read()
+# print(output)
+# # write binary(바이너리 쓰기) 모드로
+# file = open("output.png","wb")  # wb: 바이너리 사용시 wb, 텍스트는 w (str타입)
+# file.write(output)
+# file.close()
 
